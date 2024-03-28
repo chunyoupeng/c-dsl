@@ -1,15 +1,19 @@
 #include <stdio.h>
+int main(){
+  /***
+      Subcriber
+   */
 
-//@rocket
+//@SUB(subscriber_msg_func msg_func, void* msg_arg, const Topic* topic)   
 
+  /***
+      Publisher
+   */
 
+//@PUB(const Topic* topic, const TopicData* topicData)
 
-int getRacket(){
-  return 0;
+  printf("Hello, World!");
 }
 
-int main(){
-  // 这里调用
-  printf("Hello, Racket!\n");
-  //@height
-};
+
+

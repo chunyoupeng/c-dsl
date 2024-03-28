@@ -46,7 +46,7 @@ primaryExpression
 
 
 SpecialComment
-    : '//@' Identifier -> channel(HIDDEN)
+    : '//@' .*? '\n' -> channel(HIDDEN)
     ;
 
 genericSelection
