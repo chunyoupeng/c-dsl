@@ -16,7 +16,7 @@ public class Main {
         ParseTree tree = parser.compilationUnit(); // 或其他适当的起始规则
         ParseTreeWalker walker = new ParseTreeWalker();
 
-        SpecialCommentListener listener = new SpecialCommentListener(tokens);
+        SpecialCommentListener listener = new SpecialCommentListener(tokens, args[0]);
         walker.walk(listener, tree);
 
         // 输出处理后的代码

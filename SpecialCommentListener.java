@@ -9,16 +9,18 @@ import java.nio.charset.StandardCharsets;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
-
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class SpecialCommentListener extends CBaseListener {
 
     private TokenStreamRewriter rewriter;
     private Set<Token> processedTokens;
-
-    public SpecialCommentListener(BufferedTokenStream tokens) {
+    private String path;
+    public SpecialCommentListener(BufferedTokenStream tokens, String path) {
         this.rewriter = new TokenStreamRewriter(tokens);
         this.processedTokens = new HashSet<>();
+	this.path = path;
     }
 
     @Override
@@ -45,9 +47,11 @@ public class SpecialCommentListener extends CBaseListener {
 public String runPython(String text){
     StringBuilder output = new StringBuilder(); // 使用StringBuilder来累积输出
     try {
+	Path basePath = Paths.get(this.path);
+        Path resolvedPath = basePath.resolve("lib/comment.py");
         String[] cmd = {
             "python",
-            "main.py",
+            resolvedPath.toString(),
             text,
         };
         Process p = Runtime.getRuntime().exec(cmd);
